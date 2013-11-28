@@ -1,27 +1,27 @@
-#ifndef BITCOINUNITS_H
-#define BITCOINUNITS_H
+#ifndef EUROBITUNITS_H
+#define EUROBITUNITS_H
 
 #include <QString>
 #include <QAbstractListModel>
 
-/** Bitcoin unit definitions. Encapsulates parsing and formatting
+/** Eurobit unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
-class BitcoinUnits: public QAbstractListModel
+class EurobitUnits: public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit BitcoinUnits(QObject *parent);
+    explicit EurobitUnits(QObject *parent);
 
-    /** Bitcoin units.
-      @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
+    /** Eurobit units.
+      @note Source: https://en.eurobit.it/wiki/Units . Please add only sensible ones
      */
     enum Unit
     {
-        BTC,
-        mBTC,
-        uBTC
+        EUB,
+        mEUB,
+        uEUB
     };
 
     //! @name Static API
@@ -62,8 +62,8 @@ public:
     ///@}
 
 private:
-    QList<BitcoinUnits::Unit> unitlist;
+    QList<EurobitUnits::Unit> unitlist;
 };
-typedef BitcoinUnits::Unit BitcoinUnit;
+typedef EurobitUnits::Unit EurobitUnit;
 
-#endif // BITCOINUNITS_H
+#endif // EUROBITUNITS_H

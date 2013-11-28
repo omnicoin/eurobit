@@ -1,6 +1,6 @@
 #include "optionsmodel.h"
 
-#include "bitcoinunits.h"
+#include "eurobitunits.h"
 #include "init.h"
 #include "walletdb.h"
 #include "guiutil.h"
@@ -42,7 +42,7 @@ void OptionsModel::Init()
     QSettings settings;
 
     // These are Qt-only settings:
-    nDisplayUnit = settings.value("nDisplayUnit", BitcoinUnits::BTC).toInt();
+    nDisplayUnit = settings.value("nDisplayUnit", EurobitUnits::EUB).toInt();
     bDisplayAddresses = settings.value("bDisplayAddresses", false).toBool();
     fMinimizeToTray = settings.value("fMinimizeToTray", false).toBool();
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
@@ -50,7 +50,7 @@ void OptionsModel::Init()
     language = settings.value("language", "").toString();
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
 
-    // These are shared with core Bitcoin; we want
+    // These are shared with core Eurobit; we want
     // command-line options to override the GUI settings:
     if (settings.contains("fUseUPnP"))
         SoftSetBoolArg("-upnp", settings.value("fUseUPnP").toBool());

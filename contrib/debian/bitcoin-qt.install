@@ -1,6 +1,6 @@
-bitcoin-qt usr/bin
-share/pixmaps/bitcoin32.xpm usr/share/pixmaps
-share/pixmaps/bitcoin16.xpm usr/share/pixmaps
-share/pixmaps/bitcoin128.png usr/share/pixmaps
-debian/bitcoin-qt.desktop usr/share/applications
-debian/bitcoin-qt.protocol usr/share/kde4/services/
+eurobit-qt usr/bin
+share/pixmaps/eurobit32.xpm usr/share/pixmaps
+share/pixmaps/eurobit16.xpm usr/share/pixmaps
+share/pixmaps/eurobit128.png usr/share/pixmaps
+debian/eurobit-qt.desktop usr/share/applications
+debian/eurobit-qt.protocol usr/share/kde4/services/

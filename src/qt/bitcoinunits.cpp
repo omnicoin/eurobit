@@ -1,91 +1,91 @@
-#include "bitcoinunits.h"
+#include "eurobitunits.h"
 
 #include <QStringList>
 
-BitcoinUnits::BitcoinUnits(QObject *parent):
+EurobitUnits::EurobitUnits(QObject *parent):
         QAbstractListModel(parent),
         unitlist(availableUnits())
 {
 }
 
-QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
+QList<EurobitUnits::Unit> EurobitUnits::availableUnits()
 {
-    QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(BTC);
-    unitlist.append(mBTC);
-    unitlist.append(uBTC);
+    QList<EurobitUnits::Unit> unitlist;
+    unitlist.append(EUB);
+    unitlist.append(mEUB);
+    unitlist.append(uEUB);
     return unitlist;
 }
 
-bool BitcoinUnits::valid(int unit)
+bool EurobitUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTC:
-    case mBTC:
-    case uBTC:
+    case EUB:
+    case mEUB:
+    case uEUB:
         return true;
     default:
         return false;
     }
 }
 
-QString BitcoinUnits::name(int unit)
+QString EurobitUnits::name(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("LTC");
-    case mBTC: return QString("mLTC");
-    case uBTC: return QString::fromUtf8("μLTC");
+    case EUB: return QString("EUB");
+    case mEUB: return QString("mEUB");
+    case uEUB: return QString::fromUtf8("μEUB");
     default: return QString("???");
     }
 }
 
-QString BitcoinUnits::description(int unit)
+QString EurobitUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Litecoins");
-    case mBTC: return QString("Milli-Litecoins (1 / 1,000)");
-    case uBTC: return QString("Micro-Litecoins (1 / 1,000,000)");
+    case EUB: return QString("Eurobits");
+    case mEUB: return QString("Milli-Eurobits (1 / 1,000)");
+    case uEUB: return QString("Micro-Eurobits (1 / 1,000,000)");
     default: return QString("???");
     }
 }
 
-qint64 BitcoinUnits::factor(int unit)
+qint64 EurobitUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC:  return 100000000;
-    case mBTC: return 100000;
-    case uBTC: return 100;
+    case EUB:  return 100000000;
+    case mEUB: return 100000;
+    case uEUB: return 100;
     default:   return 100000000;
     }
 }
 
-int BitcoinUnits::amountDigits(int unit)
+int EurobitUnits::amountDigits(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8; // 21,000,000 (# digits, without commas)
-    case mBTC: return 11; // 21,000,000,000
-    case uBTC: return 14; // 21,000,000,000,000
+    case EUB: return 8; // 21,000,000 (# digits, without commas)
+    case mEUB: return 11; // 21,000,000,000
+    case uEUB: return 14; // 21,000,000,000,000
     default: return 0;
     }
 }
 
-int BitcoinUnits::decimals(int unit)
+int EurobitUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8;
-    case mBTC: return 5;
-    case uBTC: return 2;
+    case EUB: return 8;
+    case mEUB: return 5;
+    case uEUB: return 2;
     default: return 0;
     }
 }
 
-QString BitcoinUnits::format(int unit, qint64 n, bool fPlus)
+QString EurobitUnits::format(int unit, qint64 n, bool fPlus)
 {
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
@@ -112,12 +112,12 @@ QString BitcoinUnits::format(int unit, qint64 n, bool fPlus)
     return quotient_str + QString(".") + remainder_str;
 }
 
-QString BitcoinUnits::formatWithUnit(int unit, qint64 amount, bool plussign)
+QString EurobitUnits::formatWithUnit(int unit, qint64 amount, bool plussign)
 {
     return format(unit, amount, plussign) + QString(" ") + name(unit);
 }
 
-bool BitcoinUnits::parse(int unit, const QString &value, qint64 *val_out)
+bool EurobitUnits::parse(int unit, const QString &value, qint64 *val_out)
 {
     if(!valid(unit) || value.isEmpty())
         return false; // Refuse to parse invalid unit or empty string
@@ -154,13 +154,13 @@ bool BitcoinUnits::parse(int unit, const QString &value, qint64 *val_out)
     return ok;
 }
 
-int BitcoinUnits::rowCount(const QModelIndex &parent) const
+int EurobitUnits::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return unitlist.size();
 }
 
-QVariant BitcoinUnits::data(const QModelIndex &index, int role) const
+QVariant EurobitUnits::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
     if(row >= 0 && row < unitlist.size())
